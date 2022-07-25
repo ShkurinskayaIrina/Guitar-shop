@@ -33,10 +33,13 @@ function FormSearch(): JSX.Element {
   function FormSearchSelectItem(guitar:Guitar) {
     const {id, name} = guitar;
     return (
-      <Link className="button button--mini" to={`/catalog/guitar/${id}`}
-        onClick={onResetButtonClick}
+      <Link className="button button--mini"
+        style={{textAlign: 'left', padding: '0px', fontWeight:'400'}}
+        to={`/catalog/guitar/${id}`}
+        onClick={onResetButtonClick} key={id}
+        tabIndex={0}
       >
-        <li className="form-search__select-item" tabIndex={0}>{name}</li>
+        <li className="form-search__select-item" >{name}</li>
       </Link>
     );
   }
@@ -55,7 +58,7 @@ function FormSearch(): JSX.Element {
         />
         <label className="visually-hidden" htmlFor="search">Поиск</label>
       </form>
-      <ul className={`form-search__select-list ${isHideSelectItem===true ? 'hidden' : 'list-opened'}`}>
+      <ul className={`form-search__select-list ${isHideSelectItem===true ? 'hidden' : 'list-opened'}`} tabIndex={-1}>
         {formSearchItems.map((item) => (
           FormSearchSelectItem(item)
         ))}
@@ -72,3 +75,4 @@ function FormSearch(): JSX.Element {
 }
 
 export default FormSearch;
+
